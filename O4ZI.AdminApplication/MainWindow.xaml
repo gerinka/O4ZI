@@ -3,6 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Control">
+                    <MenuItem Header="_Manage users" Command="{Binding ShowUserControls}"/>
+                    <MenuItem Header="_Manage application" Command="{Binding ShowApplicationControls}"/>
+                    <Separator />
+                    <MenuItem Header="E_xit" InputGestureText="F2" Command="ApplicationCommands.Close" />
+                </MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
     </Grid>
+
+    <Window.InputBindings>
+        <KeyBinding Command="NotACommand" Modifiers="Alt" Key="F4" />
+        <KeyBinding Command="Close" Key="F2" />
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="Close" Executed="CommandBinding_OnExecuted" />
+    </Window.CommandBindings>
 </Window>
