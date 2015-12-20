@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "За нас";
+}
+
+@section Banner{ 
+    <header>
+        <h1>За нас</h1>
+        <p>Къде и как можете да ни намерите</p>
+    </header>
+}
+<article role="main" class="clearfix contact">
+    <div class="post">
+        <h2>О<sup>4</sup>ЗИ - Learning Network</h2>
+        <p>Проект - дипломна работа на Гергана Георгиева</p>
+        <p>фн:м23276</p>
+        <p>специалност: Технологично предприемачество</p>
+        <p>
+            <span class="icon">[</span>: 0883 311 317<br />
+            <span class="icon">M</span>: <a href="/mailto:dodstes@gmail.com">dodstes[at]gmail[dot]com</a>
+        </p>
+        <p>&nbsp;</p>
+    </div>
+    <div class="g-map"><img src="~/Content/images/map.png" alt="G Map" /></div>
+</article>
+
+@section Bottom{ 
+    <footer class="foo-slogan">
+        <form class="c-form">
+            <h2>Остави ни съобщение ...</h2>
+            <label for="name">Име</label>
+            <input type="text" id="name">
+            <label for="email">Имейл адрес</label>
+            <input type="email" id="email">
+            <label for="msg">Съобщение</label>
+            <textarea id="msg" rows="10" cols="60"></textarea>
+            <input type="submit" value="Изпрати" class="button green">
+        </form>
+    </footer>
+}

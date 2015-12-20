@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Профил";
+}
+
+@section Banner{
+    <header>
+        <h1><span class="icon">L</span> Профил</h1>
+        <p>От тук можете да управлявате личния си профил.</p>
+    </header>
+    }
+<article role="main" class="clearfix">
+    <div class="post">
+        <h2>Да споделиш страстта си към нова информация с приятели - безценно.</h2>
+        <p>От тук може да контролираш профила си, да добавяш и променяш лична информация, учебни занимания, приятели и др. Можеш да управляваш статуса на споделените ресурси, както и на социалните мрежи, в които участваш.</p>
+        <p></p>
+    </div>
+</article>
+
+@section Bottom{
+        <ul class="thumb-list">
+        <li>
+            <h3><a href=""><span class="icon">L</span> Личен профил</a></h3>
+            <figure>
+                <a href="#"><img src="~/Content/images/icons/_edit_profile.png" alt="Личен профил"></a>
+                <figcaption>
+                    <p>От тук можете да управлявате личния си профил</p>
+                </figcaption>
+            </figure>
+        </li>
+        <li>
+            <h3><a href=""><span class="icon">?</span> Класове</a></h3>
+            <figure>
+                <a href="#"><img src="~/Content/images/icons/_edit_classes.png" alt="Класове"></a>
+                <figcaption>
+                    <p>От тук можете да управлявате класовете, в които участвате</p>
+                </figcaption>
+            </figure>
+        </li>
+        <li>
+            <h3><a href=""><span class="icon">Û</span> Учебни материали</a></h3>
+            <figure>
+                <a href="#"><img src="~/Content/images/icons/_edit_materials.png" alt="Учебни материали"></a>
+                <figcaption>
+                    <p>От тук можете да управлявате вашите учебни материали</p>
+                </figcaption>
+            </figure>
+        </li>
+        <li>
+            <h3><a href=""><span class="icon">]</span> Приятели</a></h3>
+            <figure>
+                <a href="#"><img src="~/Content/images/icons/_edit_friends.png" alt="Приятели"></a>
+                <figcaption>
+                    <p>От тук можете да добавяте нови приятели</p>
+                </figcaption>
+            </figure>
+        </li>
+    </ul>
+    <footer class="foo-slogan">
+        <h2>Ще се радваме, ако споделите мнението си за сайта:</h2>
+        <a href="@Url.Action("Contact", "Home")" class="button orange">За нас <span class="icon">M</span></a>
+    </footer>
+
+}

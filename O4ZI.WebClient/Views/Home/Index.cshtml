@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Начало";
+}
+
+@section Banner{
+    <header>
+        <h1>Онлайн общество за обучение, обмяна на знания и идеи(О<sup>4</sup>ЗИ)</h1>
+        <p>Можете да се свързвате със състудентите си, студентите си и приятелите си</p>
+    </header>
+}
+
+<section class="container">
+        <!-- // banner ends -->
+
+        <article role="main" class="clearfix">
+            <div class="post">
+                <h2>Добре дошли на страниците на О<sup>4</sup>ЗИ</h2>
+                <p>С навлизането на редицата социални мрежи в живота ни, вече не можем да си представим денят ни да минава без тях.</p>
+                <p>Сайтът е интегриран с по-популярните от тях - <a href="https://www.facebook.com/">Facebook</a>, <a href="https://twitter.com/">Twitter</a>, <a href="http://www.youtube.com/">Youtube</a>.</p>
+                <p>Част от възможностите на ООЗИ са:</p>
+                <ul>
+                    <li>Споделяне на лекции - текстови и видео формат</li>
+                    <li>Споделяне на статии и интересна информация.</li>
+                    <li>Оценяване на предоставените учебни материали.</li>
+                </ul>
+                <a href="@Url.Action("Index", "Community")" class="button left">Повече за нас<span class="icon">:</span></a>
+            </div>
+            <aside role="complementary">
+                <a href="#demo-url"><img src="~/Content/images/community2.png" alt="Да учим заедно"></a>
+            </aside>
+        </article>
+    </section>
+
+
+@section Bottom{
+    <div class="columns">
+    <article>
+        <figure>
+            <img src="~/Content/images/Graduates~1.png" alt="Нови приятели">
+            <figcaption>
+                <h3>Нови приятели</h3>
+                <p>Тук можете да срещнете както и настоящите си състуденти или студенти, така и <strong>нови съмишленици</strong>, с които да споделите своите идеи. <a href="/register" class="more-link">Регистрирай се сега &rarr;</a></p>
+            </figcaption>
+        </figure>
+    </article>
+    <article>
+        <figure>
+            <img src="~/Content/images/new_knowledge.png" alt="Нови знания" class="alt-col">
+            <figcaption>
+                <h3>Нови знания</h3>
+                <p>Може да откриете <strong>много интересна информация</strong> по различните теми и предмети, много лекции, статии и видео материали. <a href="/register" class="more-link">Регистрирай се сега &rarr;</a></p>
+            </figcaption>
+        </figure>
+    </article>
+    <article>
+        <figure>
+            <img src="~/Content/images/new_fun2.png" alt="Нови забавления">
+            <figcaption>
+                <h3>Нови забавления</h3>
+                <p>Можете да откриете, че има <strong>нови и забавни начини за учене</strong> и прекарване на времето пред компютъра, освен ровене из мрежата. <a href="/register" class="more-link">Регистрирай се сега &rarr;</a></p>
+            </figcaption>
+        </figure>
+    </article>
+    <article>
+        <figure>
+            <img src="~/Content/images/new_opportunities3.png" alt="Нови възможности" class="alt-col">
+            <figcaption>
+                <h3>Нови възможности</h3>
+                <p>Тук можете да получите нови възможности да се занимавате с това, което искате, и да помагате на други да научат интересни неща. <a href="/register" class="more-link">Регистрирай се сега &rarr;</a></p>
+            </figcaption>
+        </figure>
+    </article>
+</div>
+}

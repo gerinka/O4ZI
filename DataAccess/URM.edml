@@ -1,0 +1,506 @@
+﻿<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DeepFrostModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DeepFrostEntitiesStoreContainer">
+          <EntitySet Name="accountroles" EntityType="DeepFrostModel.Store.accountrole" store:Type="Tables" Schema="deep_frost" Table="accountrole" />
+          <EntitySet Name="classes" EntityType="DeepFrostModel.Store.class" store:Type="Tables" Schema="deep_frost" Table="class" />
+          <EntitySet Name="programs" EntityType="DeepFrostModel.Store.program" store:Type="Tables" Schema="deep_frost" Table="program" />
+          <EntitySet Name="program2classes" EntityType="DeepFrostModel.Store.program2class" store:Type="Tables" Schema="deep_frost" Table="program2class" />
+          <EntitySet Name="socialnetworks" EntityType="DeepFrostModel.Store.socialnetwork" store:Type="Tables" Schema="deep_frost" Table="socialnetwork" />
+          <EntitySet Name="socialnetworkmappings" EntityType="DeepFrostModel.Store.socialnetworkmapping" store:Type="Tables" Schema="deep_frost" Table="socialnetworkmapping" />
+          <EntitySet Name="users" EntityType="DeepFrostModel.Store.user" store:Type="Tables" Schema="deep_frost" Table="user" />
+          <EntitySet Name="user2programs" EntityType="DeepFrostModel.Store.user2program" store:Type="Tables" Schema="deep_frost" Table="user2program" />
+          <EntitySet Name="userdatas" EntityType="DeepFrostModel.Store.userdata" store:Type="Tables" Schema="deep_frost" Table="userdata" />
+          <AssociationSet Name="FK_classid" Association="DeepFrostModel.Store.FK_classid">
+            <End Role="class" EntitySet="classes" />
+            <End Role="program2class" EntitySet="program2classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_programid" Association="DeepFrostModel.Store.FK_programid">
+            <End Role="program" EntitySet="programs" />
+            <End Role="program2class" EntitySet="program2classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocialNetworkId" Association="DeepFrostModel.Store.FK_SocialNetworkId">
+            <End Role="socialnetwork" EntitySet="socialnetworks" />
+            <End Role="socialnetworkmapping" EntitySet="socialnetworkmappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserId" Association="DeepFrostModel.Store.FK_UserId">
+            <End Role="user" EntitySet="users" />
+            <End Role="socialnetworkmapping" EntitySet="socialnetworkmappings" />
+          </AssociationSet>
+          <AssociationSet Name="User_AccountRole" Association="DeepFrostModel.Store.User_AccountRole">
+            <End Role="accountrole" EntitySet="accountroles" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_programid_userId" Association="DeepFrostModel.Store.FK_programid_userId">
+            <End Role="program" EntitySet="programs" />
+            <End Role="user2program" EntitySet="user2programs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userid_programId" Association="DeepFrostModel.Store.FK_userid_programId">
+            <End Role="user" EntitySet="users" />
+            <End Role="user2program" EntitySet="user2programs" />
+          </AssociationSet>
+          <AssociationSet Name="UserIdUserData" Association="DeepFrostModel.Store.UserIdUserData">
+            <End Role="user" EntitySet="users" />
+            <End Role="userdata" EntitySet="userdatas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="accountrole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="varchar" Nullable="false" MaxLength="32" Collation="utf8_general_ci" />
+        </EntityType>
+        <EntityType Name="class">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+        </EntityType>
+        <EntityType Name="program">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+        </EntityType>
+        <EntityType Name="program2class">
+          <Key>
+            <PropertyRef Name="programId" />
+            <PropertyRef Name="classId" />
+          </Key>
+          <Property Name="programId" Type="int" Nullable="false" />
+          <Property Name="classId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="socialnetwork">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SocialNetwork" Type="varchar" Nullable="false" MaxLength="32" Collation="utf8_general_ci" />
+          <Property Name="Url" Type="varchar" Nullable="false" MaxLength="64" Collation="utf8_general_ci" />
+          <Property Name="NetworkProvider" Type="varchar" Nullable="false" MaxLength="64" Collation="utf8_general_ci" />
+          <Property Name="Available" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="socialnetworkmapping">
+          <Key>
+            <PropertyRef Name="User" />
+            <PropertyRef Name="SocialNetwork" />
+            <PropertyRef Name="SocialNetworkAccount" />
+          </Key>
+          <Property Name="User" Type="int" Nullable="false" />
+          <Property Name="SocialNetwork" Type="int" Nullable="false" />
+          <Property Name="SocialNetworkAccount" Type="varchar" Nullable="false" MaxLength="32" Collation="utf8_general_ci" />
+          <Property Name="MainAccount" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AccountName" Type="varchar" Nullable="false" MaxLength="30" Collation="utf8_general_ci" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="32" Collation="utf8_general_ci" />
+          <Property Name="AccountRole" Type="int" Nullable="false" />
+          <Property Name="DisplayName" Type="varchar" Nullable="false" MaxLength="64" Collation="utf8_general_ci" />
+        </EntityType>
+        <EntityType Name="user2program">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="programId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="programId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userdata">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="LastName" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="FacultyNumber" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="EGN" Type="varchar" MaxLength="12" Collation="utf8_general_ci" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_classid">
+          <End Role="class" Type="DeepFrostModel.Store.class" Multiplicity="1" />
+          <End Role="program2class" Type="DeepFrostModel.Store.program2class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="program2class">
+              <PropertyRef Name="classId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_programid">
+          <End Role="program" Type="DeepFrostModel.Store.program" Multiplicity="1" />
+          <End Role="program2class" Type="DeepFrostModel.Store.program2class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="program">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="program2class">
+              <PropertyRef Name="programId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocialNetworkId">
+          <End Role="socialnetwork" Type="DeepFrostModel.Store.socialnetwork" Multiplicity="1" />
+          <End Role="socialnetworkmapping" Type="DeepFrostModel.Store.socialnetworkmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="socialnetwork">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="socialnetworkmapping">
+              <PropertyRef Name="SocialNetwork" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserId">
+          <End Role="user" Type="DeepFrostModel.Store.user" Multiplicity="1" />
+          <End Role="socialnetworkmapping" Type="DeepFrostModel.Store.socialnetworkmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="socialnetworkmapping">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_AccountRole">
+          <End Role="accountrole" Type="DeepFrostModel.Store.accountrole" Multiplicity="1" />
+          <End Role="user" Type="DeepFrostModel.Store.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountrole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="AccountRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_programid_userId">
+          <End Role="program" Type="DeepFrostModel.Store.program" Multiplicity="1" />
+          <End Role="user2program" Type="DeepFrostModel.Store.user2program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="program">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user2program">
+              <PropertyRef Name="programId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userid_programId">
+          <End Role="user" Type="DeepFrostModel.Store.user" Multiplicity="1" />
+          <End Role="user2program" Type="DeepFrostModel.Store.user2program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user2program">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserIdUserData">
+          <End Role="user" Type="DeepFrostModel.Store.user" Multiplicity="1" />
+          <End Role="userdata" Type="DeepFrostModel.Store.userdata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userdata">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DeepFrostModel" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DeepFrostEntities" annotation:LazyLoadingEnabled="true" ed:Guid="389ccebf-2fb0-4db1-ba32-9b7e39460ed1">
+          <EntitySet Name="Accountroles" EntityType="DeepFrostModel.Accountrole" />
+          <EntitySet Name="Classes" EntityType="DeepFrostModel.Class" />
+          <EntitySet Name="Programs" EntityType="DeepFrostModel.Program" />
+          <EntitySet Name="Socialnetworks" EntityType="DeepFrostModel.Socialnetwork" />
+          <EntitySet Name="Socialnetworkmappings" EntityType="DeepFrostModel.Socialnetworkmapping" />
+          <EntitySet Name="Users" EntityType="DeepFrostModel.User" />
+          <EntitySet Name="Userdatas" EntityType="DeepFrostModel.Userdata" />
+          <AssociationSet Name="FK_SocialNetworkIdSet" Association="DeepFrostModel.FK_SocialNetworkId">
+            <End Role="Socialnetwork" EntitySet="Socialnetworks" />
+            <End Role="Socialnetworkmappings" EntitySet="Socialnetworkmappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserIdSet" Association="DeepFrostModel.FK_UserId">
+            <End Role="User1" EntitySet="Users" />
+            <End Role="Socialnetworkmappings" EntitySet="Socialnetworkmappings" />
+          </AssociationSet>
+          <AssociationSet Name="User_AccountRoleSet" Association="DeepFrostModel.User_AccountRole">
+            <End Role="Accountrole" EntitySet="Accountroles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UserIdUserDataSet" Association="DeepFrostModel.UserIdUserData">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Userdatas" EntitySet="Userdatas" />
+          </AssociationSet>
+          <AssociationSet Name="Class_ProgramSet" Association="DeepFrostModel.Class_Program">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Programs" EntitySet="Programs" />
+          </AssociationSet>
+          <AssociationSet Name="Program_UserSet" Association="DeepFrostModel.Program_User">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Accountrole" ed:Guid="2d1f4f11-47fe-49f5-8f5c-f00123aa730f">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="f9660a9c-1db1-4986-aafd-22f600df699e" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="32" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="118e1a07-3390-4acd-b040-f94a9cfe68f9" />
+          <NavigationProperty Name="Users" Relationship="DeepFrostModel.User_AccountRole" FromRole="Accountrole" ToRole="Users" ed:Guid="c6cef4a3-f9e2-491d-b9fb-8bce4c45f116" />
+        </EntityType>
+        <EntityType Name="Class" ed:Guid="3e19a98d-2f6d-4bd5-ab4b-5fdf935b8436">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="fabe74f5-a25a-4bac-b92c-a9613ec0ed74" />
+          <Property Name="Name" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="7246a6a2-d35c-47dd-83a2-441c67f576e2" />
+          <NavigationProperty Name="Programs" Relationship="DeepFrostModel.Class_Program" FromRole="Classes" ToRole="Programs" ed:Guid="3ff02540-647d-4ff7-882c-0cbde752fb22" />
+        </EntityType>
+        <EntityType Name="Program" ed:Guid="df3600c3-0aca-4a46-8c62-84fee7efc5a8">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="ee45636d-c535-4a89-b40a-656702d42abb" />
+          <Property Name="Name" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="a073a512-f056-4241-a8a7-0696e0496fb6" />
+          <NavigationProperty Name="Classes" Relationship="DeepFrostModel.Class_Program" FromRole="Programs" ToRole="Classes" ed:Guid="86dc5191-ac30-4507-999b-ec339872e2b7" />
+          <NavigationProperty Name="Users" Relationship="DeepFrostModel.Program_User" FromRole="Programs" ToRole="Users" ed:Guid="50cb1685-43e7-4ab4-92b8-9ca9b080f1fc" />
+        </EntityType>
+        <EntityType Name="Socialnetwork" ed:Guid="e6a6347a-6b2b-487b-b318-c93e691c3606">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="4ff608c1-1d96-40a2-a596-cbaa176ce537" />
+          <Property Name="SocialNetwork" Type="String" Nullable="false" MaxLength="32" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="d0625a4f-5ec3-4a66-9bf5-e4f2d40e6fac" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="64" ed:ValidateMaxLength="64" ed:ValidateRequired="true" ed:Guid="4e62f53c-badf-4f20-bd02-bedcf0737379" />
+          <Property Name="NetworkProvider" Type="String" Nullable="false" MaxLength="64" ed:ValidateMaxLength="64" ed:ValidateRequired="true" ed:Guid="56be1e7a-43ad-4119-a6b1-62108bcb5deb" />
+          <Property Name="Available" Type="SByte" Nullable="false" ed:ValidateRequired="true" ed:Guid="668aabfa-bccb-49d0-b310-2a59fc1bd532" />
+          <NavigationProperty Name="Socialnetworkmappings" Relationship="DeepFrostModel.FK_SocialNetworkId" FromRole="Socialnetwork" ToRole="Socialnetworkmappings" ed:Guid="3cb6592d-6648-4c1f-b5f5-e19be5f67a43" />
+        </EntityType>
+        <EntityType Name="Socialnetworkmapping" ed:Guid="afb1ffa8-2ca1-43a3-b1db-d8535e4ab1a9">
+          <Key>
+            <PropertyRef Name="User" />
+            <PropertyRef Name="SocialNetwork" />
+            <PropertyRef Name="SocialNetworkAccount" />
+          </Key>
+          <Property Name="User" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="70b18a86-92f3-48ce-b78a-0372fcffdf64" />
+          <Property Name="SocialNetwork" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="8fc0bf62-3645-4a45-b475-7f88dfe65126" />
+          <Property Name="SocialNetworkAccount" Type="String" Nullable="false" MaxLength="32" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="6178d0d6-c112-428e-809f-a2c2fec5cae0" />
+          <Property Name="MainAccount" Type="SByte" Nullable="false" ed:ValidateRequired="true" ed:Guid="e50cd8cd-ea8e-4337-b34f-511bf715a88c" />
+          <NavigationProperty Name="Socialnetwork" Relationship="DeepFrostModel.FK_SocialNetworkId" FromRole="Socialnetworkmappings" ToRole="Socialnetwork" ed:Guid="b5a79a86-dc5f-43a6-991a-be0e0b522844" />
+          <NavigationProperty Name="User1" Relationship="DeepFrostModel.FK_UserId" FromRole="Socialnetworkmappings" ToRole="User1" ed:Guid="65b8fc81-f11a-4696-9cbd-9480385c07fa" />
+        </EntityType>
+        <EntityType Name="User" ed:Guid="14012916-efb3-47bb-94c5-07c69f39361d">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="d7ab3722-e635-466c-b187-e9cf333cfda3" />
+          <Property Name="AccountName" Type="String" Nullable="false" MaxLength="30" ed:ValidateMaxLength="30" ed:ValidateRequired="true" ed:Guid="e3ea8f15-372b-4786-ba1e-4d84198873a1" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="32" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="1db7c0ac-a6b1-4bc7-82c3-04ab79e9b668" />
+          <Property Name="AccountRole" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="75b9d9f5-4a10-43c4-b5c1-7e513a43c80d" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="64" ed:ValidateMaxLength="64" ed:ValidateRequired="true" ed:Guid="36f84bb3-becd-4910-a1b5-18955ed8ae46" />
+          <NavigationProperty Name="Socialnetworkmappings" Relationship="DeepFrostModel.FK_UserId" FromRole="User1" ToRole="Socialnetworkmappings" ed:Guid="cb34a752-6be0-4160-9281-1b384cbf14de" />
+          <NavigationProperty Name="Accountrole" Relationship="DeepFrostModel.User_AccountRole" FromRole="Users" ToRole="Accountrole" ed:Guid="40ae3bf6-a5d7-4745-9abc-2667a9768800" />
+          <NavigationProperty Name="Userdatas" Relationship="DeepFrostModel.UserIdUserData" FromRole="User" ToRole="Userdatas" ed:Guid="af52d6f6-a1df-4863-92c2-7d012f7884e7" />
+          <NavigationProperty Name="Programs" Relationship="DeepFrostModel.Program_User" FromRole="Users" ToRole="Programs" ed:Guid="e7a8ed09-71e6-4fe6-8769-5e1f0eeab9a9" />
+        </EntityType>
+        <EntityType Name="Userdata" ed:Guid="dc5a918b-40f7-4520-b83d-3399d190a19c">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="20eb767c-6486-45bb-a1c4-24bd21928167" />
+          <Property Name="FirstName" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="aabbe8e2-a150-4dd3-87cd-42a57e6dd1b5" />
+          <Property Name="LastName" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="585040c0-f4fd-4c56-a523-1903e2de35b3" />
+          <Property Name="FacultyNumber" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="b8589b23-fdab-418b-b68f-745b88dd444d" />
+          <Property Name="EGN" Type="String" MaxLength="12" ed:ValidateMaxLength="12" ed:ValidateRequired="false" ed:Guid="2d304706-c337-4af8-9b94-a477ffa65185" />
+          <Property Name="UserId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="e667eacf-6458-4d40-868f-8b02ea655183" />
+          <NavigationProperty Name="User" Relationship="DeepFrostModel.UserIdUserData" FromRole="Userdatas" ToRole="User" ed:Guid="05656d8e-35f7-4e4e-a237-5f73543dfa20" />
+        </EntityType>
+        <Association Name="FK_SocialNetworkId" ed:Guid="be487ecc-c073-46fc-a90d-c1da6b261477">
+          <End Role="Socialnetwork" Type="DeepFrostModel.Socialnetwork" Multiplicity="1" />
+          <End Role="Socialnetworkmappings" Type="DeepFrostModel.Socialnetworkmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socialnetwork">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Socialnetworkmappings">
+              <PropertyRef Name="SocialNetwork" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserId" ed:Guid="e12ee56f-436e-4813-bea2-5634602086ac">
+          <End Role="User1" Type="DeepFrostModel.User" Multiplicity="1" />
+          <End Role="Socialnetworkmappings" Type="DeepFrostModel.Socialnetworkmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Socialnetworkmappings">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_AccountRole" ed:Guid="7f0a43b4-64ba-416c-b8b8-ea214c690db3">
+          <End Role="Accountrole" Type="DeepFrostModel.Accountrole" Multiplicity="1" />
+          <End Role="Users" Type="DeepFrostModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accountrole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="AccountRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserIdUserData" ed:Guid="ff732529-897e-4705-afe5-b6a230957c29">
+          <End Role="User" Type="DeepFrostModel.User" Multiplicity="1" />
+          <End Role="Userdatas" Type="DeepFrostModel.Userdata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Userdatas">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Class_Program" ed:Guid="bf23ae01-8d1a-4fc9-a0a2-91ce096dd477">
+          <End Role="Classes" Type="DeepFrostModel.Class" Multiplicity="*" />
+          <End Role="Programs" Type="DeepFrostModel.Program" Multiplicity="*" />
+        </Association>
+        <Association Name="Program_User" ed:Guid="5b3b6aa8-666b-4562-9481-28b9fd508b7c">
+          <End Role="Programs" Type="DeepFrostModel.Program" Multiplicity="*" />
+          <End Role="Users" Type="DeepFrostModel.User" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- MSL content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DeepFrostEntitiesStoreContainer" CdmEntityContainer="DeepFrostEntities">
+          <EntitySetMapping Name="Accountroles">
+            <EntityTypeMapping TypeName="DeepFrostModel.Accountrole">
+              <MappingFragment StoreEntitySet="accountroles">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="DeepFrostModel.Class">
+              <MappingFragment StoreEntitySet="classes">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="DeepFrostModel.Program">
+              <MappingFragment StoreEntitySet="programs">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Socialnetworks">
+            <EntityTypeMapping TypeName="DeepFrostModel.Socialnetwork">
+              <MappingFragment StoreEntitySet="socialnetworks">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="SocialNetwork" ColumnName="SocialNetwork" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="NetworkProvider" ColumnName="NetworkProvider" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Socialnetworkmappings">
+            <EntityTypeMapping TypeName="DeepFrostModel.Socialnetworkmapping">
+              <MappingFragment StoreEntitySet="socialnetworkmappings">
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="SocialNetwork" ColumnName="SocialNetwork" />
+                <ScalarProperty Name="SocialNetworkAccount" ColumnName="SocialNetworkAccount" />
+                <ScalarProperty Name="MainAccount" ColumnName="MainAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DeepFrostModel.User">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AccountRole" ColumnName="AccountRole" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Userdatas">
+            <EntityTypeMapping TypeName="DeepFrostModel.Userdata">
+              <MappingFragment StoreEntitySet="userdatas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FacultyNumber" ColumnName="FacultyNumber" />
+                <ScalarProperty Name="EGN" ColumnName="EGN" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Class_ProgramSet" TypeName="DeepFrostModel.Class_Program" StoreEntitySet="program2classes">
+            <EndProperty Name="Classes">
+              <ScalarProperty Name="Id" ColumnName="classId" />
+            </EndProperty>
+            <EndProperty Name="Programs">
+              <ScalarProperty Name="Id" ColumnName="programId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Program_UserSet" TypeName="DeepFrostModel.Program_User" StoreEntitySet="user2programs">
+            <EndProperty Name="Programs">
+              <ScalarProperty Name="Id" ColumnName="programId" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="Id" ColumnName="userId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <edmx:Diagrams>
+      <Diagram Name="Main" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

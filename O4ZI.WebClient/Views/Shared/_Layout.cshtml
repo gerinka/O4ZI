@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <header class="clearfix">
+        <div class="container">
+            <a id="logo" href="/"><b>О<sup>4</sup>ЗИ</b></a>
+            <ul class="social-icons">
+                @if (@User.Identity.IsAuthenticated)
+                {
+                    <li><div id="welcome">Здравей, @User.Identity.Name</div></li>
+                }
+                <li><a href="http://www.facebook.com/blog.cssjuntion" class="icon flip">^</a></li>
+                <li><a href="" class="icon">T</a></li>
+                <li><a href="http://www.twitter.com/cssjunction" class="icon">^</a></li>
+            </ul>
+            <nav class="clearfix">
+                <ul role="navigation">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")" class="activePage"><span class="icon">S</span>Начало</a>
+                    </li>
+                    @if (@User.Identity.IsAuthenticated)
+                    {
+
+                        <li>
+                            <a href="@Url.Action("Index", "Student")"><span class="icon">L</span>Профил</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Community", "Student")"><span class="icon">6</span>Общество</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Materials", "Student")"><span class="icon">Û</span>Материали</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("LogOff", "Account")"><span class="icon">w</span>Изход</a>
+                        </li>
+                    }
+                    else
+                    {
+                     
+                        <li>
+                            <a href="@Url.Action("Login", "Account")"><span class="icon">t</span>Вход</a>
+                        </li>
+                    }
+                    <li>
+                        <a href="@Url.Action("Contact", "Home")"><span class="icon">M</span>За нас</a>
+                    </li>
+                    <!--@Html.Partial("_LoginPartial")-->
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+    <section role="banner">
+        @RenderSection("Banner")
+        @RenderBody()
+    </section>
+        <section class="container"> <!-- // banner ends -->
+              @RenderSection("Bottom",  false)
+       
+    </section>
+                <footer role="contentinfo">
+                    <p>
+                        <span class="left">CSS Junction &copy; - 2013 | Released under Creative Common License. <a href="#">Отиди в началото</a></span>
+                        <a href="@Url.Action("Index", "Home")">Начало</a> | 
+                        @if (@User.Identity.IsAuthenticated)
+                       {
+                           <a href="@Url.Action("Index", "Student")">Профил</a> <text>|</text> <a href="@Url.Action("Community", "Student")">Общество</a>
+                           <text>|</text>     
+                            <a href="@Url.Action("Materials", "Student")">Материали</a> <text>|</text> <a href="@Url.Action("Logoff", "Account")">Изход</a>     
+                       }
+                       else
+                       {
+                          <a href="@Url.Action("Login", "Account")">Вход</a>     
+                       }  | <a href="@Url.Action("Contact", "Home")">За нас</a>
+                    </p>
+                </footer>
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                <script>window.jQuery || document.write('<script src="assets/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+                <script src="assets/js/script.min.js"></script>
+                
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            
+            
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+</body>
+</html>
