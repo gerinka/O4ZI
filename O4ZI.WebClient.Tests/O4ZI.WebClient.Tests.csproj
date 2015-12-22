@@ -6,12 +6,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B607C165-509D-4DE5-AF8C-2B306DA3CCFD}</ProjectGuid>
+    <ProjectGuid>{F7B86782-88E8-48A6-A003-5CC5D71B612F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>O4ZI.WebClient.Tests</RootNamespace>
     <AssemblyName>O4ZI.WebClient.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -95,7 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\O4ZI.WebClient\O4ZI.WebClient.csproj">
-      <Project>{82B1ADBC-186A-4443-9EA1-160F7763806C}</Project>
+      <Project>{66024156-1F0C-4510-AB78-5085256E0A56}</Project>
       <Name>O4ZI.WebClient</Name>
     </ProjectReference>
   </ItemGroup>

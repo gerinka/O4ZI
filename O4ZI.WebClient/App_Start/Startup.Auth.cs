@@ -24,15 +24,16 @@ namespace O4ZI.WebClient
             //    clientId: "",
             //    clientSecret: "");
 
-            app.UseTwitterAuthentication(
-               consumerKey: "oXLbPrlOhG4Z37AnuO03w",
-               consumerSecret: "vu2EZ8zNUxeEpUUdoiTRG55e8Gfb4MIW1JDGEoklpQ");
+            //app.UseTwitterAuthentication(
+            //   consumerKey: "",
+            //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "361910163871940",
-               appSecret: "bba585f61f4897aee00b8e11e0bc887f");
+              appId: "361910163871940",
+              appSecret: "37115f62e7b7163f4f407f581dc1b28e");
 
-            app.UseGoogleAuthentication();
+
+            //app.UseGoogleAuthentication();
         }
     }
 }
