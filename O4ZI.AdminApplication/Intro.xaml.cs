@@ -16,21 +16,13 @@ using System.Windows.Shapes;
 namespace O4ZI.AdminApplication
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Intro.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Intro : Page
     {
-        public MainWindow()
+        public Intro()
         {
             InitializeComponent();
-            Intro.Navigate(Intro);
         }
-
-        private void CommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        
     }
 }

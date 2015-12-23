@@ -12,7 +12,8 @@
                     <MenuItem Header="E_xit" InputGestureText="F2" Command="ApplicationCommands.Close" />
                 </MenuItem>
             </Menu>
-            <TextBox AcceptsReturn="True" />
+
+            <Frame NavigationUIVisibility="Hidden" x:Name="Intro" />
         </DockPanel>
     </Grid>
 
