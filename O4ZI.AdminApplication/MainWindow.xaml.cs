@@ -23,7 +23,7 @@ namespace O4ZI.AdminApplication
         public MainWindow()
         {
             InitializeComponent();
-            Intro.Navigate(Intro);
+            Intro.Navigate(new Intro());
         }
 
         private void CommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -31,6 +31,16 @@ namespace O4ZI.AdminApplication
             Application.Current.Shutdown();
         }
 
-        
+        private void MenuItem_OnManageUsers(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Intro.Navigate(new ManageUsers());
+        }
+
+        private void MenuItem_OnManageApplication(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Intro.Navigate(new ManageApplication());
+        }
+
+
     }
 }

@@ -8,6 +8,7 @@
 	Title="ManageApplication">
 
     <Grid>
-        
+        <DataGrid ItemsSource="{Binding SocialNetworks}" AutoGenerateColumns="True" />
+
     </Grid>
 </Page>

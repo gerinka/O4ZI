@@ -6,8 +6,8 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Control">
-                    <MenuItem Header="_Manage users" Command="{Binding ShowUserControls}"/>
-                    <MenuItem Header="_Manage application" Command="{Binding ShowApplicationControls}"/>
+                    <MenuItem Header="_Manage users" Click="MenuItem_OnManageUsers"/>
+                    <MenuItem Header="_Manage application" Click="MenuItem_OnManageApplication"/>
                     <Separator />
                     <MenuItem Header="E_xit" InputGestureText="F2" Command="ApplicationCommands.Close" />
                 </MenuItem>

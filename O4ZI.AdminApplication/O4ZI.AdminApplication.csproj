@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,7 +57,9 @@
     <Compile Include="Intro.xaml.cs">
       <DependentUpon>Intro.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManageApplicationModelView.cs" />
     <Compile Include="ManageUsersModelView.cs" />
+    <Compile Include="SocialNetwork.cs" />
     <Compile Include="User.cs" />
     <Page Include="Intro.xaml">
       <SubType>Designer</SubType>

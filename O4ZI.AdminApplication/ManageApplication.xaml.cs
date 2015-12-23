@@ -23,6 +23,7 @@ namespace O4ZI.AdminApplication
         public ManageApplication()
         {
             InitializeComponent();
+            DataContext = new ManageApplicationViewModel();
         }
     }
 }
